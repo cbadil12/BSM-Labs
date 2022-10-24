@@ -1,5 +1,13 @@
 # PRÁCTICA 1: Git
-## Crear cuenta en GitHub y crear un repositorio
+## 1.1 Instala Virtualbox
+https://www.virtualbox.org/wiki/Downloads
+## 1.2 Importa la máquina virtual base
+- Datos para la descarga: https://mega.nz/file/VPcxCIKC
+- Password: qdQ-fRe2whvDAHqNvuGN7vZ1YQjoMsLUW-aEEUhEGAo
+- Datos de la máquina virtual:
+  - Usuario: ev-k8s
+  - Password: k8s
+## 4. Crear cuenta en GitHub y crear un repositorio
 - https://github.com/
 ## Configurar git paar que utilice mi usuario y contraseña
 - `git config --global user.ame "Carlos Luis Badillo"`
@@ -33,10 +41,26 @@
 `cd <directorio>` Para meterme en el fichero/carpeta 
 `cd ..` Para ir al directorio jerarquicamente anterior 
 
-# PRÁCTICA 2: Docker
+# CLASE 2: Docker
 ## Imágenes de Docker
 Las imágenes son ficheros estáticos inmutables que inluye la aplicacion y todas sus dependencias, de esta forma es portable e independiente de la infraestructura.<br />
 Las imágenes son construidas por diferentes capas sobre una imagen base. Estas capas permiten reutilizar componentes para otras construcciones.
+## Docker Volumes
+- Un contenedor por esencia es efímero. todos los datos que se generen durante el proceso desaparecerán si borro el proceso.
+- En ocasiones es necesario que nuestras aplicaciones tengan datos persistentes. Como por ejemplo una base de datos.
+- Existen diferentes formas de almacenar esta información según el caso de uso y nuestras necesidades:
+  - **Volume**: el más normal y aconsejado. Se almacena dentro del FS del host dentro de var/lib/docker/volumes y gestionado por Docker. Otros procesos no podrán modificar estos ficheros. Es la mejor opción de persistir información en Docker.
+  - **Bind Mount**: Se puede almacenar información en cualquier FS del host. Otros procesos en este caso sí podrán modificar estos ficheros.
+  - **Tmpfs mount**: Permite almacenar información en la memoria del host pero nunca será escrita en el filesystem del host. Estos ficheros sólo estarán disponible durante la vida del contenedor.
+- Independientemente del tipo de almacenamiento que elijamos dentro del contenedor se verá como un directorio/fichero disponible dónde podremos leer y escribir.
+## Docker Netwoks
+- Todas las aplicaciones desplegadas van a necesitar comunicar con otras aplicaciones o permitir el acceso al servicio que ofrece.
+- Docker al tratarse de aplicaciones ligeras, minimiza la superficie de ataque exponiendo sólo aquellos puertos que realmente son necesarios, limitando de esta forma que un malware pueda hacer uso de ciertos puertos/protocolos para tomar el control.
+- Existen diferentes configuraciones de la red a nivel de Docker, las más importantes:
+ - **Bridge**: El driver por defecto para gestionar las redes de los contenedores de un host. Permite que varios contenedores que están arrancados en la misma máquina, se llamen entre ellos.
+ - **Host**: Se elimina el asilamiento entre el host y el contenedor de red. El contenedor pasa a utilizar la propia red del host. El propio contenedor va a poder llamar a los puertos del host.
+ - **Overlay**: Permite conectar múltiples demonios de contenedores juntas y permitir servicios distribuidos (cuando hay más de un host).
+ - **None**: Se desactiva todas las redes del contenedor, este contenedor sólo podrá hacer computo pero no será accesible ni podrá acceder a ninguna otra aplicación.
 ## Comandos básicos en la Client
 - `docker build` Para construir una una imagen de local
 - `docker pull` Para cargar una imagen del Registry público y deja una copia de esa imagen en local
@@ -76,14 +100,28 @@ https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 - `CMD [ "node", "server.js"]` Indica el comando que arranca dicho servicio. Hay otras variaciones de sintaxis de este comando con ENTRYPOINT
 - `ENTRYPOINT [ "node", "server.js" ]`
 - `ENTRYPOINT node server.js`
-## Recomendación de buenas prácticas
+### Recomendación de buenas prácticas
 - La intención es crear un contenedor ligero para que seas muy rápido y fácil de mover de un sitio a otro.
 - Se puede crear un fichero .dockerignore en el mismo directorio para evitar que se copien ficheros que no deseemos (como logs o librerías).
 
-## Docker Volumes
-- Un contenedor por esencia es efímero. todos los datos que se generen durante el proceso desaparecerán si borro el proceso.
-- En ocasiones es necesario que nuestras aplicaciones tengan datos persistentes. Como por ejemplo una base de datos.
-- Existen diferentes formas de almacenar esta información según el caso de uso y nuestras necesidades:
-  - **Volume**: el más normal y aconsejado. Se almacena dentro del FS del host dentro de var/lib/docker/volumes y gestionado por Docker. Otros procesos no podrán modificar estos ficheros. Es la mejor opción de persistir información en Docker.
-  - **Bind Mount**: Se puede almacenar información en cualquier FS del host. Otros procesos en este caso sí podrán modificar estos ficheros.
-  - **Tmpfs mount**: Permite almacenar información en la memoria del host pero nunca será escrita en el filesystem del host. Estos ficheros sólo estarán disponible durante la vida del contenedor.
+## Comandos básicos para Docker Volumes
+### Gestión de Volumes
+1. **Creamos un volumen en Docker**
+ - `docker volume create <nombre_volumen>`
+2. **Arrancamos el contenedor usando el volumen creado**
+ - `docker run -it --name <nombre_contenedor> -v <nombre_volumen>:<directorio_contenedor> centos /bin/bash` El short command -it es para indicarle que mantenga vivo el contenedor mientras lo lanza.
+ - `docker run -it --name < nombre_contenedor> --mount source=<nombre volumen>, target=<directorio_contenedor> centos /bin/bash` Otra sintaxis más larga y clara
+- **Otros comandos para gestionar volumenes**
+  - `docker volume ls` Listar los volumenes creados
+  - `docker volume inspect [volume_name]` Inspeccionar un volumen
+  - `docker volume rm [volume_name]` Borrar un volumen creado
+- Para borrar un volumen es necesario que ningún contenedor esté usando ese volumen
+### Bind Mount / tmpfs
+1. **Bind Mount: Arrancamos el contenedor usando un punto de montaje concreto del host**
+ - `docker run -it --name <nombre_contenedor> -v <fs_local>:<directorio_contenedor> centos /bin/bash`
+ - `docker run -it --name <nombre_contenedor> --mount type=bind,source=<fs_local>/target,target=<directorio_contenedor> centos /bin/bash`
+2. **TMPFS: Arrancamos el contenedor con la opción tmpfs o usando la opción de mount type tmpfs**
+ - `docker run -it --name <nombre_contenedor> --tmpfs /app centos /bin/bash`
+ - `docker run -it --name <nombre_contenedor> --mount=tmpfs,destination=/app centos /bin/bash`
+
+ # PRÁCTICA 2: Creando los primeros contenedores
