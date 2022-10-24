@@ -32,3 +32,11 @@
 `ls` Lista el contenido del directorio en el que me encuentro <br />
 `cd <directorio>` Para meterme en el fichero/carpeta <br />
 `cd ..` Para ir al directorio jerarquicamente anterior <br />
+
+# PRÁCTICA 2: Docker
+## Comandos básicos en la Client
+- `docker build` Para construir una una imagen
+- `docker pull` Para cargar una imagen
+- `docker run` Para lanzar un contenedor a partir de una imagen
+
+https://github.com/cbadil12/BSM-Labs/blob/dev/LAB1/dockercompoenntssvg
