@@ -12,14 +12,15 @@
 - echo "# BSM-Labs" >> README.md
 ### Se actualizar el repositorio
 - Primero se guarda el archivo con CTRL+S
-- git add LAB1 -> Añade el fichero LAB1 a la zona de staging
+- `git add LAB1` -> Añade el fichero LAB1 a la zona de staging
 - git commit -m "Comentario del commit" -> Confirma el cambio
-- git push -u origin main -> Sincroniza el repositorio
+- git push -u origin main -> Sincroniza el repositorio en la rama main
+- git push -u origin dev -> Sincroniza el repositorio en la rama dev
 
 # COMANDOS ÚTILES EN Git
 ## Comandos generales
-git help <br />
-git status <br />
+`git help` <br />
+`git status` <br />
 ## Comandos para trabajar con ramas
 git branch -> Ver todas lasa ramas del proyecto <br />
 git branch [nueva_rama] -> Crear nueva rama <br />
