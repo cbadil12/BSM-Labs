@@ -84,6 +84,6 @@ https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 - Un contenedor por esencia es efímero. todos los datos que se generen durante el proceso desaparecerán si borro el proceso.
 - En ocasiones es necesario que nuestras aplicaciones tengan datos persistentes. Como por ejemplo una base de datos.
 - Existen diferentes formas de almacenar esta información según el caso de uso y nuestras necesidades:
-  - Volume
-  - Bind Mount
-  - Tmpfs mount
+  - **Volume**: el más normal y aconsejado. Se almacena dentro del FS del host dentro de var/lib/docker/volumes y gestionado por Docker. Otros procesos no podrán modificar estos ficheros. Es la mejor opción de persistir información en Docker.
+  - **Bind Mount**: Se puede almacenar información en cualquier FS del host. Otros procesos en este caso sí podrán modificar estos ficheros.
+  - **Tmpfs mount**: Permite almacenar información en la memoria del host pero nunca será escrita en el filesystem del host. Estos ficheros sólo estarán disponible durante la vida del contenedor.
