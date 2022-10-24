@@ -39,4 +39,4 @@
 - `docker pull` Para cargar una imagen
 - `docker run` Para lanzar un contenedor a partir de una imagen
 
-https://github.com/cbadil12/BSM-Labs/blob/dev/LAB1/dockercompoenntssvg
+https://github.com/cbadil12/BSM-Labs/blob/dev/LAB1/dockercompoenntssvg.png
