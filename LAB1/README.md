@@ -26,9 +26,10 @@
 `git branch [nueva_rama]` Crear nueva rama <br />
 `git checkout -b [nueva_rama]` Crear nueva rama y cambiar de rama <br />
 `git checkout [nombre_rama]` Cambiar a otra rama <br />
+`git pull origin main`Hace pull desde la rama main en el origin al repositorio local
 
 ## Comandos básicos en la terminal
 `ls` Lista el contenido del directorio en el que me encuentro <br />
-`cd <directorio>`ara meterme en el fichero/carpeta <br />
+`cd <directorio>` Para meterme en el fichero/carpeta <br />
 `cd ..` Para ir al directorio jerarquicamente anterior <br />
 
