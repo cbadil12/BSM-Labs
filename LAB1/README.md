@@ -28,7 +28,7 @@
 `git checkout [nombre_rama]` Cambiar a otra rama <br />
 
 ## Comandos básicos en la terminal
-ls ➡ Lista el contenido del directorio en el que me encuentro <br />
-cd <directorio> ➡ Para meterme en el fichero/carpeta <br />
-cd .. ➡ Para ir al directorio jerarquicamente anterior <br />
+`ls` Lista el contenido del directorio en el que me encuentro <br />
+`cd <directorio>`ara meterme en el fichero/carpeta <br />
+`cd ..` Para ir al directorio jerarquicamente anterior <br />
 
