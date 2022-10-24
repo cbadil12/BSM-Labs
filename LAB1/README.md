@@ -19,24 +19,40 @@
 
 # COMANDOS ÚTILES EN Git
 ## Comandos generales
-`git help` <br />
-`git status` <br />
+`git help`
+`git status` 
 ## Comandos para trabajar con ramas
-`git branch` Ver todas lasa ramas del proyecto <br />
-`git branch [nueva_rama]` Crear nueva rama <br />
-`git checkout -b [nueva_rama]` Crear nueva rama y cambiar de rama <br />
-`git checkout [nombre_rama]` Cambiar a otra rama <br />
+`git branch` Ver todas lasa ramas del proyecto 
+`git branch [nueva_rama]` Crear nueva rama 
+`git checkout -b [nueva_rama]` Crear nueva rama y cambiar de rama 
+`git checkout [nombre_rama]` Cambiar a otra rama 
 `git pull origin main`Hace pull desde la rama main en el origin al repositorio local
 
 ## Comandos básicos en la terminal
-`ls` Lista el contenido del directorio en el que me encuentro <br />
-`cd <directorio>` Para meterme en el fichero/carpeta <br />
-`cd ..` Para ir al directorio jerarquicamente anterior <br />
+`ls` Lista el contenido del directorio en el que me encuentro 
+`cd <directorio>` Para meterme en el fichero/carpeta 
+`cd ..` Para ir al directorio jerarquicamente anterior 
 
 # PRÁCTICA 2: Docker
+## Imágenes de Docker
+Las imágenes son ficheros estáticos inmutables que inluye la aplicacion y todas sus dependencias, de esta forma es portable e independiente de la infraestructura.<br />
+Las imágenes son construidas por diferentes capas sobre una imagen base. Estas capas permiten reutilizar componentes para otras construcciones.
 ## Comandos básicos en la Client
-- `docker build` Para construir una una imagen
-- `docker pull` Para cargar una imagen
+- `docker build` Para construir una una imagen de local
+- `docker pull` Para cargar una imagen del Registry público y deja una copia de esa imagen en local
 - `docker run` Para lanzar un contenedor a partir de una imagen
-
-https://github.com/cbadil12/BSM-Labs/blob/dev/LAB1/dockercompoenntssvg.png
+## Ejemplo para crear una imagen en NODE
+`FROM node:16`
+### Create app directory
+`WORKDIR /usr/src/app`
+### Install app dependencies
+- A wildcard is used to ensure both package.json AND package-lock.json are copied where available (npm@5+)
+`COPY package*.json ./`
+`RUN npm install`
+- If you are building your code for production `RUN npm ci --only=production`
+### Bundle app source
+```
+COPY ./app /usr/src/app
+EXPOSE 8080
+CMD [ "node", "server.js" ]
+```
