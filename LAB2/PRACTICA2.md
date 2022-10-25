@@ -6,6 +6,11 @@ Before you install Docker Engine for the first time on a new host machine, you n
  - Update the `apt` package index and install packages to allow `apt` to use a repository over HTTPS:
 
    - `sudo apt-get update`Actualiza la paquetería de Ubuntu
+   - ```
+git status
+git add
+git commit
+```
    - ```sudo apt-get install \
     ca-certificates \
       curl \
