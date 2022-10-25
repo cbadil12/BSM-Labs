@@ -10,7 +10,8 @@ Before you install Docker Engine for the first time on a new host machine, you n
     ca-certificates \
       curl \
       gnupg \
-      lsb-release``` Instala gestor de certificados, comando curl que permite descqargar ficheros de urls, el gestor de paquetes gnupg a nivel de claves y lsb-release que permite saber en que versión del kernel estamos trabajando
+      lsb-release
+      ``` Instala gestor de certificados, comando curl que permite descqargar ficheros de urls, el gestor de paquetes gnupg a nivel de claves y lsb-release que permite saber en que versión del kernel estamos trabajando
 
 ### 1.2 Add Docker’s official GPG key:
  - `sudo mkdir -p /etc/apt/keyrings`
@@ -37,7 +38,26 @@ echo \
  - YAML
 
  ## 4. Correr imagen (de Ubuntu)
- `docker run -it --name mi_primera_ubuntu ubuntu /bin/bash`
+   - `docker run -it --name mi_primera_ubuntu ubuntu /bin/bash`
+   - Starteo y exiteo el contenedor
+   - `docker ps`Da información de los contenedores que hay corriendo
+   - `docker ps -a` Da información de todos los contenedores que tengo, estén corriendo o no
+  
+  ## 5. Crear imagen desde cero
+   - `FROM ubuntu`
+   - `RUN ap update`
+
+   - `ARG DEBIAN_FRONTEND=noninteractive`
+   - `RUN apt install apache2 -y`
+   - `RUN apt install apache2 -utils -y`
+   - `RUN apt clean`
+
+   - `ENV APACHE_RUN_USER www-data`
+   - `ENV APACHE_RUN_GROUP www-data`
+   - `ENV APACHE_LOG_DIR /var/log/apache2`
+
+   - `EXPOSE 80` Arranca el contenedor exponinendo el puerto 80 en el host
+   - `CMD ["apache2ctl", "-D", "FOREGROUND"]`
 
  MINUTO 2:15
 
