@@ -68,7 +68,7 @@ echo \
     - Selecionamos el nombre: bsm-ubuntu-apache2:visualcode
   ## 6. Correr un contenedor a partir de la imagen creada
   ### 6.1 Desde la terminal
-   . `docker run --name ubuntu-apache2 --rm -d -p 80:80/tcp bsm-ubuntu-apache2:latest` El nombr del contenedor es ubuntu-apache2, --rm borra el contenedor cuando lo cierre (para que no se quede funcionando), -d detacha la terminal del contenedor (lo arranqca en segundo plano, contratio a -it), configuramos una red y le decimos que  el puerto 80 del contenedor lo saque al puerto 80 del a máquina donde está , y que arranque el contenedor a partir de la imagen con nombre:tag bsm-ubuntu-apache2:latest
+   - `docker run --name ubuntu-apache2 --rm -d -p 80:80/tcp bsm-ubuntu-apache2:latest` El nombr del contenedor es ubuntu-apache2, --rm borra el contenedor cuando lo cierre (para que no se quede funcionando), -d detacha la terminal del contenedor (lo arranqca en segundo plano, contratio a -it), configuramos una red y le decimos que  el puerto 80 del contenedor lo saque al puerto 80 del a máquina donde está , y que arranque el contenedor a partir de la imagen con nombre:tag bsm-ubuntu-apache2:latest
   ### 6.2 Desde VisualStudio
    - Botón derecho en la imagen creada  bsm-ubuntu-apache2:visualcode -> 
    - Es más ágil pero crea los nombres de los contenedores de manera aleatoria (se tiene menos control)
