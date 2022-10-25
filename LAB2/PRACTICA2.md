@@ -26,9 +26,9 @@ echo \
 ```
 ## 2. Instalar Docker Engine
 ### 2.1 Update the `apt` package index:
-    - `sudo apt-get update` Actualiza la paquetería de Ubuntu
+  - `sudo apt-get update` Actualiza la paquetería de Ubuntu
 ### 2.2 Install Docker Engine, containerd, and Docker Compose. For the lastest version, run:
-  `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+  - `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
 ### 2.3 Comprobar versión de Docker instalada
 - `docker version`Debe ser la versión 20.10.17
 ### 2.4 Para que el usuario pueda gestionar el motor del contenedor
@@ -46,20 +46,20 @@ echo \
    - `docker ps -a` Da información de todos los contenedores que tengo, estén corriendo o no
   
   ## 5. Crear imagen desde cero
-   - `FROM ubuntu`
-   - `RUN ap update`
+   - `FROM ubuntu` Para este ejercicio simulamos que tenemos un sistema operativo Ubuntu
+   - `RUN ap update` Actualizamos la paquetería de ese sistema operativo
 
-   - `ARG DEBIAN_FRONTEND=noninteractive`
-   - `RUN apt install apache2 -y`
-   - `RUN apt install apache2 -utils -y`
-   - `RUN apt clean`
+   - `ARG DEBIAN_FRONTEND=noninteractive` Definimos argumento para que no nos pregunte si queremos instalar los paquetes o no
+   - `RUN apt install apache2 -y` Instalamos el software Apache, que es un frontal (página web)
+   - `RUN apt install apache2 -utils -y` Instalamos el paquete de utilidades "utils" de Apache
+   - `RUN apt clean` Limpiamos todos los archivos temporales, ya que se busca que la imagen del contenedor sea lo más ligera posible
 
-   - `ENV APACHE_RUN_USER www-data`
-   - `ENV APACHE_RUN_GROUP www-data`
-   - `ENV APACHE_LOG_DIR /var/log/apache2`
+   - `ENV APACHE_RUN_USER www-data` Variable de entorno necesaria para que funcione
+   - `ENV APACHE_RUN_GROUP www-data` Variable de entorno necesaria para que funcione
+   - `ENV APACHE_LOG_DIR /var/log/apache2` Variable de entorno necesaria para que funcione
 
    - `EXPOSE 80` Arranca el contenedor exponinendo el puerto 80 en el host
-   - `CMD ["apache2ctl", "-D", "FOREGROUND"]`
+   - `CMD ["apache2ctl", "-D", "FOREGROUND"]` Proceso que tiene que arrancar
 
  MINUTO 2:15
 
