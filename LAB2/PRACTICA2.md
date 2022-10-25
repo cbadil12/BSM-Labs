@@ -46,8 +46,9 @@ echo \
    - `docker ps -a` Da información de todos los contenedores que tengo, estén corriendo o no
   
   ## 5. Crear imagen desde cero
+  ### 5.1 Hacemos el Dockerfile
    - `FROM ubuntu` Para este ejercicio simulamos que tenemos un sistema operativo Ubuntu
-   - `RUN ap update` Actualizamos la paquetería de ese sistema operativo
+   - `RUN apt update` Actualizamos la paquetería de ese sistema operativo
 
    - `ARG DEBIAN_FRONTEND=noninteractive` Definimos argumento para que no nos pregunte si queremos instalar los paquetes o no
    - `RUN apt install apache2 -y` Instalamos el software Apache, que es un frontal (página web)
@@ -60,7 +61,20 @@ echo \
 
    - `EXPOSE 80` Arranca el contenedor exponinendo el puerto 80 en el host
    - `CMD ["apache2ctl", "-D", "FOREGROUND"]` Proceso que tiene que arrancar
-
- MINUTO 2:15
-
- Esto lo escribo en la rama dev
+  ### 5.2 Compilamos la imagen desde la terminal yendo al directorio donde se encuentra el dockerfile y usando el comando:
+   - `docker build . -t bsm-ubuntu-apache2:latest`
+  ### 5.3 Compilamos otra imagen a partir del mismo dockerfile, pero desde VisualStudio
+    - Botón derecho en el dockerfile -> build image
+    - Selecionamos el nombre: bsm-ubuntu-apache2:visualcode
+  ## 6. Correr un contenedor a partir de la imagen creada
+  ### 6.1 Desde la terminal
+   . `docker run --name ubuntu-apache2 --rm -d -p 80:80/tcp bsm-ubuntu-apache2:latest` El nombr del contenedor es ubuntu-apache2, --rm borra el contenedor cuando lo cierre (para que no se quede funcionando), -d detacha la terminal del contenedor (lo arranqca en segundo plano, contratio a -it), configuramos una red y le decimos que  el puerto 80 del contenedor lo saque al puerto 80 del a máquina donde está , y que arranque el contenedor a partir de la imagen con nombre:tag bsm-ubuntu-apache2:latest
+  ### 6.2 Desde VisualStudio
+   - Botón derecho en la imagen creada  bsm-ubuntu-apache2:visualcode -> 
+   - Es más ágil pero crea los nombres de los contenedores de manera aleatoria (se tiene menos control)
+  
+  ## 7. Comprobar que el contenedor funciona abriendo el navegador
+   - Abrimos el navegador y ponemos localhost
+   - Si sale la págin por defecto de bienvenida de Apache, es que funciona
+   - Paramos el contenedor con botón derecho en él y "stop"
+   - Al volver a abrir el navegador y poner localhost, dará un problema de conexión
