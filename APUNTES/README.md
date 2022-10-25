@@ -8,7 +8,6 @@
  - `git checkout -b [nueva_rama]` Crear nueva rama y cambiar de rama 
  - `git checkout [nombre_rama]` Cambiar a otra rama 
  - `git pull origin main`Hace pull desde la rama main en el origin al repositorio local
-
 ## Comandos básicos en la terminal
  - `ls` Lista el contenido del directorio en el que me encuentro 
  - `cd <directorio>` Para meterme en el fichero/carpeta 
@@ -40,6 +39,8 @@ Las imágenes son construidas por diferentes capas sobre una imagen base. Estas 
  - `docker run` Para lanzar un contenedor a partir de una imagen
  - `docker ps`Da información de los contenedores que hay corriendo
  - `docker ps -a` Da información de todos los contenedores que tengo, estén corriendo o no
+ - `docker images` Da información sobre las imágenes existentes en la máquina
+ - `docker image inspect <nombre_imagen:tag_imagen>` Da toda la información sobre una imagen en particular
 ## Ejemplo de DOCKERFILE para crear una imagen en NODE
 ### Le digo que cree el contenedor utilizando la tecnologiade nodejs (sin encesidad de tener una máquina virtual entera de node)
 `FROM node:16`
