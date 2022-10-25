@@ -6,14 +6,13 @@ Before you install Docker Engine for the first time on a new host machine, you n
  - Update the `apt` package index and install packages to allow `apt` to use a repository over HTTPS:
 
    - `sudo apt-get update`Actualiza la paquetería de Ubuntu
-1
-   ```
-     sudo apt-get install \
-      ca-certificates \
-        curl \
-        gnupg \
-        lsb-release
-   ``` 
+   -  ```
+       sudo apt-get install \
+        ca-certificates \
+          curl \
+          gnupg \
+          lsb-release
+      ``` 
       Instala gestor de certificados, comando curl que permite descqargar ficheros de urls, el gestor de paquetes gnupg a nivel de claves y lsb-release que permite saber en que versión del kernel estamos trabajando
 
 ### 1.2 Add Docker’s official GPG key:
