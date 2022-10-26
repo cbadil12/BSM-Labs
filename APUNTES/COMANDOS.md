@@ -19,10 +19,11 @@
  - `docker build` Para construir una una imagen de local
  - `docker pull` Para cargar una imagen del Registry público y deja una copia de esa imagen en local
  - `docker run` Para lanzar un contenedor a partir de una imagen
- - `docker run --name ubuntu-apache2 --rm -d -p 80:80/tcp bsm-ubuntu-apache2:latest` El nombr del contenedor es ubuntu-apache2, --rm borra el contenedor cuando lo cierre (para que no se quede funcionando), -d detacha la terminal del contenedor (lo arranqca en segundo plano, contratio a -it), configuramos una red y le decimos que  el puerto 80 del contenedor lo saque al puerto 80 del a máquina donde está , y que arranque el contenedor a partir de la imagen con nombre:tag bsm-ubuntu-apache2:latest
  - `docker ps`Da información de los contenedores que hay corriendo
  - `docker ps -a` Da información de todos los contenedores que tengo, estén corriendo o no
  - `docker images` Da información sobre las imágenes existentes en la máquina
+## Comandos específicos en la Client
+ - `docker run --name ubuntu-apache2 --rm -d -p 80:80/tcp bsm-ubuntu-apache2:latest` El nombre del contenedor es ubuntu-apache2, --rm borra el contenedor cuando lo cierre (para que no se quede funcionando), -d detacha la terminal del contenedor (lo arranqca en segundo plano, contratio a -it), configuramos una red y le decimos que  el puerto 80 del contenedor lo saque al puerto 80 del a máquina donde está , y que arranque el contenedor a partir de la imagen con nombre:tag bsm-ubuntu-apache2:latest
  - `docker image inspect <nombre_imagen:tag_imagen>` Da toda la información sobre una imagen en particular
 ## Comandos básicos para crear una imagen
 ### Imagen Base

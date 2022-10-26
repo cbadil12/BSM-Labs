@@ -1,6 +1,16 @@
-# CLASE 1: 
+# CLASE 1: INTRODUCCIÓN
 
 # CLASE 2: DOCKER
+## ¿Qué es Docker?
+ - Docker es un proyecto OpenSource diseñado para empaquetar, transportar y ejecutar cualquier aplicación como un contenedor ligero. Desarrollado en el lenguaje GO.
+ - Diseño e implementación de una arquitectura sencilla que ha acercado su uso a gran escala.
+  - Apoyo de compañías: IBM, RedHat , Google o Microsoft
+  - Escalabilidad y flexibilidad por diseño para adaptarse a la demanda del negocio
+## Componentes de Docker
+ - **Docker Engine**: Docker daemon , lleva a cabo las tareas de construcción, ejecución y destrucción de los contenedores. La comunicación a través de un API REST.
+ - **Docker images**: plantilla que define instrucciones para la creación de los contenedores a través de un fichero denominado Dockerfile. Se pueden construir desde cero o emplear imágenes creadas por otros.
+ - **Docker container**: instancia ejecutable de una imagen.
+ - *Docker registries**: librerías de imágenes públicas (Dockerhub ) o privadas (mismo o distinto servidor).
 ## Imágenes de Docker
 Las imágenes son ficheros estáticos inmutables que inluye la aplicacion y todas sus dependencias, de esta forma es portable e independiente de la infraestructura.<br />
 Las imágenes son construidas por diferentes capas sobre una imagen base. Estas capas permiten reutilizar componentes para otras construcciones.
@@ -37,3 +47,15 @@ If you are building your code for production `RUN npm ci --only=production`
 
 https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 
+# CLASE 3: ORQUESTADOR DE CONTENEDORES
+## Introducción
+ - Todos los contenedores son controlados por un orquestador
+ - Las instancias de los contenedores se crean a partir de una imagen que se puede encontrar en repositorios públicos o privados
+ - Los contenedores son procesos dentro del host, su arranque o parada es tan rápido como cualquier otro proceso
+## Plataformas de orquestación de contenedores
+ - MESOSPHERE
+ - RANCHER
+ - DOCKER SWARM
+ - VMWARE TANZU
+ - **KUBERNETES**: más del 80% de la industria hace uso de Kubernetes
+ 
